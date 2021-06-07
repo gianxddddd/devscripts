@@ -83,7 +83,7 @@ def promptscript():
 def createinput():
     global inputsec
     printwsave('---------------------------------------')
-    printwsave('Enter scriptfile: ')
+    printwsave('Enter script: ')
     try:
         inputsec = input().lower()
     except KeyboardInterrupt:
