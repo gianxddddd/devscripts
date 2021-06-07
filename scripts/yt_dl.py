@@ -76,7 +76,7 @@ def getvidsource():
     print('-video = Downloads the video to local storage.')
     print('-audio = Downloads the audio to local storage.')
     print('---------------------------------------')
-    outputsec = input()
+    outputsec = input().lower()
 
     if not os.path.exists('youtube_dl/downloads'):
         os.makedirs('youtube_dl/downloads')
@@ -96,11 +96,11 @@ def getvidsource():
         print('Worst = Consumes less data & friendly to weak connections.')
         print('---------------------------------------')
         print('Manual selection:')
-        print('Full High Resolution = 1920x1080 / 1080p or 1080p60')
-        print('High Resolution = 1280x720 / 720p or 720p60')
-        print('Standard Resolution = 854x480 / 480p')
-        print('Low Resolution = 640x360 / 360p')
-        print('Lowest Resolution = 256x144 / 144p')
+        print('1920x1080 resolution (with 60fps if applicable)')
+        print('1280x720 resolution (with 60fps if applicable)')
+        print('854x480 resolution')
+        print('640x360 resolution')
+        print('256x144 resolution')
         print('---------------------------------------')
         qualitysec = input()
         print('---------------------------------------')
@@ -109,15 +109,15 @@ def getvidsource():
             videodlopts['format'] = 'bestvideo+bestaudio/best'
         elif qualitysec == 'Worst':
             videodlopts['format'] = 'worstvideo+worstaudio/worst'
-        elif qualitysec == 'Full High Resolution':
+        elif qualitysec == '1920x1080 resolution':
             videodlopts['format'] = '299+bestaudio'
-        elif qualitysec == 'High Resolution':
+        elif qualitysec == '1280x720 resolution':
             videodlopts['format'] = '298+bestaudio'
-        elif qualitysec == 'Standard Resolution':
+        elif qualitysec == '854x480 resolution':
             videodlopts['format'] = '135+worstaudio'
-        elif qualitysec == 'Low Resolution':
+        elif qualitysec == '640x360 resolution':
             videodlopts['format'] = '134+worstaudio'
-        elif qualitysec == 'Lowest Resolution':
+        elif qualitysec == '256x144 resolution':
             videodlopts['format'] = '160+worstaudio'
         else:
             print('ERROR: Video quality not specified.')
