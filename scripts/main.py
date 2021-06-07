@@ -73,6 +73,8 @@ def promptscript():
         execscript(' scripts/jadx.py')
     elif inputsec == 'youtube_dl':
         execscript(' scripts/yt_dl.py')
+    elif inputsec == 'binary_conv':
+        execscript(' scripts/binary_conv.py')
     else:
         printwsave("""ERROR: Cannot find the script you're looking for.""")
         createinput()
