@@ -6,6 +6,7 @@ def help():
     main.printwsave('-- Help --')
     main.printwsave('---------------------------------------')
     main.printwsave('ArtASCII [art_ascii] - Converts a video/image into ASCII! Made by Chiron85.')
+    main.printwsave('Binary Converter [binary_conv] - Converts your text into Binary.')
     main.printwsave('Base64 Converter [dec_base64 | enc_base64] - Decodes/Encodes your text into Base64.')
     main.printwsave('Base32 Converter [dec_base32 | enc_base32] - Decodes/Encodes your text into Base32.')
     main.printwsave('Dex2Jar (deprecated) [dex2jar] - Decompiles dex/apk files into JARs! Made by pxb1988.')
