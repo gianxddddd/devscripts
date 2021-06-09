@@ -4,12 +4,11 @@ development tools!
 
 
 ## Features
-The development tools features
+The development tools features:
 
 [ArtASCII](https://github.com/Chion82/ASCII_bad_apple) - some codes taken from [Chion82's](https://github.com/Chion82/) [Bad Apple ASCII](https://github.com/Chion82/ASCII_bad_apple)    
 [Base64 Encoder/Decoder](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)  
-[Binary Converter](https://stackoverflow.com/a/18815890) - built in module by [Python](https://python.org)   
-[Dex2Jar [DEPRECATED]](https://github.com/pxb1988/dex2jar) - old Dex to Jar written by [pxb1988](https://github.com/pxb1988)   
+[Binary Converter](https://stackoverflow.com/a/18815890) - built in module by [Python](https://python.org)
 [jadx](https://github.com/skylot/jadx) - new Dex to Jar written by [skylot](https://github.com/skylot)  
 [YouTubeDL](https://github.com/ytdl-org/youtube-dl) - Open source download manager for video and audio
 

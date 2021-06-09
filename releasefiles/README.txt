@@ -4,8 +4,8 @@ build 4403, 06-01-21 4:09:20
 devscripts (or simply called as devscript) is a terminal tool used by developers for purposes.
 
 devscripts features ArtASCII, Binary Converter,
-Base64 Encoder/Decoder, Dex2Jar, jadx,
-youtube_dl and many more..
+Base64 Encoder/Decoder, jadx, youtube_dl
+and many more..
 
 Some features are made by the creator:
 audiocomp - Audio player for nerds.
