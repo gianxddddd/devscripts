@@ -52,8 +52,7 @@ def ext():
 def createinput():
     global inputsec
     print('---------------------------------------')
-    print('Enter dex filepath: ')
-    inputsec = input()
+    inputsec = input('Enter DEX/APK path: ')
     ext()
 
 

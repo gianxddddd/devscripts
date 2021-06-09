@@ -152,8 +152,7 @@ def conv_vid():
 def createinput():
     global inputsec
     print('---------------------------------------')
-    print('Enter video filepath: ')
-    inputsec = input()
+    inputsec = input('Enter video path: ')
     conv_vid()
 
 

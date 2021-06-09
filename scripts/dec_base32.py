@@ -43,8 +43,7 @@ def decodebase32():
 def createinput():
     global inputsec
     print('---------------------------------------')
-    print('Enter text: ')
-    inputsec = input()
+    inputsec = input('Enter text: ')
     decodebase32()
 
 

@@ -67,8 +67,6 @@ def promptscript():
         execscript(' scripts/dec_base32.py')
     elif inputsec == 'art_ascii':
         execscript(' scripts/art_ascii.py')
-    elif inputsec == 'dex2jar':
-        execscript(' scripts/dex2jar.py')
     elif inputsec == 'jadx':
         execscript(' scripts/jadx.py')
     elif inputsec == 'youtube_dl':
@@ -83,7 +81,6 @@ def promptscript():
 def createinput():
     global inputsec
     printwsave('---------------------------------------')
-    printwsave('Enter script: ')
     try:
         inputsec = input().lower()
     except KeyboardInterrupt:

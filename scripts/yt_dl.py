@@ -60,7 +60,7 @@ def getvidsource():
         return
     if len(inputsec) == 0:
         print('---------------------------------------')
-        print('ERROR: Cannot get the video of an empty url.')
+        print('ERROR: No URL argument given.')
         createinput()
         return
     if re.match(regex, inputsec) is None:
@@ -145,8 +145,7 @@ def getvidsource():
 def createinput():
     global inputsec
     print('---------------------------------------')
-    print('Enter video url: ')
-    inputsec = input()
+    inputsec = input('Enter YouTube URL: ')
     getvidsource()
 
 
