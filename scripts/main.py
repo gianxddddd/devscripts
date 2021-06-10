@@ -64,6 +64,8 @@ def promptscript():
     elif inputsec == 'dec_base64':
         execscript(' scripts/dec_base64.py')
     elif inputsec == 'enc_base32':
+        execscript(' scripts/enc_base32.py')
+    elif inputsec == 'dec_base32':
         execscript(' scripts/dec_base32.py')
     elif inputsec == 'art_ascii':
         execscript(' scripts/art_ascii.py')
