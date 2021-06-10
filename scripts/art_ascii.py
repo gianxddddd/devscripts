@@ -60,7 +60,7 @@ def handle_image_conversion(image_filepath):
     return image_ascii
 
 
-def conv_vid():
+def conv():
     if len(inputsec) == 0:
         print('ERROR: Cannot locate the specified path.')
         createinput()
@@ -152,7 +152,7 @@ def createinput():
     inputsec = input('Enter video path: ')
     sys.stdout.write("\033[F")
     print('Convert path: ' + inputsec)
-    conv_vid()
+    conv()
 
 
 print('DevScripts art_ascii.py')
