@@ -40,6 +40,7 @@ def createinput():
     print('---------------------------------------')
     inputsec = input('Enter text: ')
     sys.stdout.write("\033[F")
+    print('')
     print('Decode: '
           + inputsec)
     decodebase64()

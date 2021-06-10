@@ -70,7 +70,7 @@ def getvidsource():
 
     # Ask for output type
     print('---------------------------------------')
-    print('-- Output Types --')
+    print('-- Output Type --')
     print('-srcOnly = Outputs the source url only.')
     print('-video = Downloads the video to local storage.')
     print('-audio = Downloads the audio to local storage.')
@@ -84,7 +84,7 @@ def getvidsource():
             ytdl.download([inputsec])
     elif outputsec == '-video':
         # Ask for video quality
-        print('-- Video Qualities --')
+        print('-- Video Quality --')
         print('---------------------------------------')
         print('better = Suitable for good connections & consumes more data.')
         print('worst = Consumes less data & friendly to weak connections.')
@@ -144,6 +144,7 @@ def createinput():
     print('---------------------------------------')
     inputsec = input('Enter YouTube URL: ')
     sys.stdout.write("\033[F")
+    print('')
     print('URL: ' + inputsec)
     getvidsource()
 

@@ -86,6 +86,7 @@ def createinput():
     try:
         inputsec = input().lower()
         sys.stdout.write("\033[F")
+        print('')
         print('Script: '
               + inputsec)
     except KeyboardInterrupt:

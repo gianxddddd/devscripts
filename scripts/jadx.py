@@ -48,6 +48,7 @@ def createinput():
     print('---------------------------------------')
     inputsec = input('Enter DEX/APK path: ')
     sys.stdout.write("\033[F")
+    print('')
     print('Decompile: ' + os.path.basename(inputsec))
     ext()
 

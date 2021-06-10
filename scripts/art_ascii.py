@@ -164,6 +164,7 @@ def createinput():
     print('---------------------------------------')
     inputsec = input('Enter video/image path: ')
     sys.stdout.write("\033[F")
+    print('')
     print('Convert path: ' + inputsec)
     conv()
 

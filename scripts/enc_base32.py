@@ -34,6 +34,7 @@ def createinput():
     print('---------------------------------------')
     inputsec = input('Enter text: ')
     sys.stdout.write("\033[F")
+    print('')
     print('Encode: '
           + inputsec)
     encodebase32()
