@@ -84,7 +84,7 @@ def createinput():
     global inputsec
     printwsave('---------------------------------------')
     try:
-        inputsec = input('Enter script name: ').lower()
+        inputsec = input().lower()
         sys.stdout.write("\033[F")
         print('Script: '
               + inputsec)

@@ -3,6 +3,7 @@ import os
 import platform
 import re
 import random
+import sys
 
 from youtube_dl import YoutubeDL
 from youtube_dl import DownloadError
@@ -46,8 +47,6 @@ audiodlopts = {
 
 def getvidsource():
     if inputsec == 'exit':
-        print('---------------------------------------')
-        print('Command: exit')
         print('Ending script process..')
 
         if platform.system() == 'Linux':
@@ -59,30 +58,25 @@ def getvidsource():
         exit(0)
         return
     if len(inputsec) == 0:
-        print('---------------------------------------')
         print('ERROR: No URL argument given.')
         createinput()
         return
     if re.match(regex, inputsec) is None:
-        print('---------------------------------------')
         print('ERROR: Url is malformed, or not a valid url.')
         createinput()
         return
+    if not os.path.exists('youtube_dl/downloads'):
+        os.makedirs('youtube_dl/downloads')
 
     # Ask for output type
     print('---------------------------------------')
-    print('Output type:')
+    print('-- Output Types --')
     print('-srcOnly = Outputs the source url only.')
     print('-video = Downloads the video to local storage.')
     print('-audio = Downloads the audio to local storage.')
     print('---------------------------------------')
-    outputsec = input().lower()
+    outputsec = input('Enter output type: ')
 
-    if not os.path.exists('youtube_dl/downloads'):
-        os.makedirs('youtube_dl/downloads')
-
-    print('---------------------------------------')
-    print('URL: ' + inputsec)
     if outputsec == '-srcOnly':
         with YoutubeDL(audiodlopts) as ytdl:
             info = ytdl.extract_info(inputsec, download=False)
@@ -90,35 +84,38 @@ def getvidsource():
             ytdl.download([inputsec])
     elif outputsec == '-video':
         # Ask for video quality
-        print('Video quality:')
+        print('-- Video Qualities --')
         print('---------------------------------------')
-        print('Better = Suitable for good connections & consumes more data.')
-        print('Worst = Consumes less data & friendly to weak connections.')
+        print('better = Suitable for good connections & consumes more data.')
+        print('worst = Consumes less data & friendly to weak connections.')
         print('---------------------------------------')
         print('Manual selection:')
-        print('1920x1080 resolution (with 60fps if applicable)')
-        print('1280x720 resolution (with 60fps if applicable)')
-        print('854x480 resolution')
-        print('640x360 resolution')
-        print('256x144 resolution')
+        print('-1080p60 = Higher resolution, huge file size, 60fps')
+        print('-720p60 = High resolution, higher file size, 60fps')
+        print('-1080p = Higher resolution, higher file size, 30fps')
+        print('-720p = High resolution, high file size, 30fps')
+        print('-480p = Normal resolution, normal file size, 30fps')
+        print('-360p = Low resolution, low file size, 28fps')
         print('---------------------------------------')
-        qualitysec = input()
+        qualitysec = input('Enter video quality: ')
         print('---------------------------------------')
 
-        if qualitysec == 'Better':
+        if qualitysec == 'better':
             videodlopts['format'] = 'bestvideo+bestaudio/best'
-        elif qualitysec == 'Worst':
+        elif qualitysec == 'worst':
             videodlopts['format'] = 'worstvideo+worstaudio/worst'
-        elif qualitysec == '1920x1080 resolution':
+        elif qualitysec == '-1080p60':
             videodlopts['format'] = '299+bestaudio'
-        elif qualitysec == '1280x720 resolution':
+        elif qualitysec == '-720p60':
             videodlopts['format'] = '298+bestaudio'
-        elif qualitysec == '854x480 resolution':
+        elif qualitysec == '-1080p':
+            videodlopts['format'] = '137+bestaudio'
+        elif qualitysec == '-720p':
+            videodlopts['format'] = '136+bestaudio'
+        elif qualitysec == '-480p':
             videodlopts['format'] = '135+worstaudio'
-        elif qualitysec == '640x360 resolution':
+        elif qualitysec == '-360p':
             videodlopts['format'] = '134+worstaudio'
-        elif qualitysec == '256x144 resolution':
-            videodlopts['format'] = '160+worstaudio'
         else:
             print('ERROR: Video quality not specified.')
             return
@@ -146,6 +143,8 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter YouTube URL: ')
+    sys.stdout.write("\033[F")
+    print('URL: ' + inputsec)
     getvidsource()
 
 
