@@ -67,6 +67,10 @@ def promptscript():
         execscript(' scripts/enc_base32.py')
     elif inputsec == 'dec_base32':
         execscript(' scripts/dec_base32.py')
+    elif inputsec == 'enc_hex':
+        execscript(' scripts/enc_hex.py')
+    elif inputsec == 'dec_hex':
+        execscript(' scripts/dec_hex.py')
     elif inputsec == 'art_ascii':
         execscript(' scripts/art_ascii.py')
     elif inputsec == 'jadx':
