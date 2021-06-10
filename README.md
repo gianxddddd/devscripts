@@ -6,10 +6,10 @@ development features!
 The development tool features:
 
 [ArtASCII](https://github.com/Chion82/ASCII_bad_apple) - some codes taken from [Chion82's](https://github.com/Chion82/) [Bad Apple ASCII](https://github.com/Chion82/ASCII_bad_apple)    
-[Binary Converter](https://stackoverflow.com/a/18815890) - code written from an answer in [Stack Overflow](https://stackoverflow.com)
-[Base32 Converter](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)
-[Base64 Converter](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)
-[Hex Converter](https://docs.python.org/3/library/binascii.html) - built in module by [Python](https://python.org)
+[Binary Converter](https://stackoverflow.com/a/18815890) - code written from an answer in [Stack Overflow](https://stackoverflow.com)    
+[Base32 Converter](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)    
+[Base64 Converter](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)   
+[Hex Converter](https://docs.python.org/3/library/binascii.html) - built in module by [Python](https://python.org)   
 [jadx](https://github.com/skylot/jadx) - Dex to Jar written by [skylot](https://github.com/skylot)  
 [YouTubeDL](https://github.com/ytdl-org/youtube-dl) - Open source download manager for video and audio
 
