@@ -5,6 +5,7 @@ import platform
 import sys
 
 from codeholder import ascii_artvid_run
+from codeholder import ascii_artvid_instructions
 from PIL import Image
 from shutil import copyfile
 
@@ -77,7 +78,6 @@ def conv():
         exit(0)
         return
     if not os.path.exists(inputsec):
-        print('---------------------------------------')
         print('ERROR: Path does not exists or is a directory.')
         createinput()
         return
@@ -108,48 +108,61 @@ def conv():
              + '/converted.txt', 'x')
     f.close()
 
-    vidcap = cv2.VideoCapture(inputsec)
-    print('---------------------------------------')
-    time_count = 0
-    frames = []
+    if inputsec.endswith(('.mp4', '.mkv', '.3gp', '.mov')):
+        print('---------------------------------------')
+        vidcap = cv2.VideoCapture(inputsec)
+        time_count = 0
+        frames = []
 
-    while time_count <= video_length * 1000:
-        print('Converting: ' + str(time_count))
-        vidcap.set(0, time_count)
-        success, image = vidcap.read()
-        if success:
-            cv2.imwrite('ascii_art/converted/'
-                       + os.path.basename(inputsec)
-                       + '/temp.jpg', image)
-        frames.append(handle_image_conversion('ascii_art/converted/'
-                                              + os.path.basename(inputsec)
-                                              + '/temp.jpg'))
-        time_count = time_count + 100
+        while time_count <= video_length * 1000:
+            print('Converting: ' + str(time_count))
+            vidcap.set(0, time_count)
+            success, image = vidcap.read()
+            if success:
+                cv2.imwrite('ascii_art/converted/'
+                            + os.path.basename(inputsec)
+                            + '/temp.jpg', image)
+            frames.append(handle_image_conversion('ascii_art/converted/'
+                                                  + os.path.basename(inputsec)
+                                                  + '/temp.jpg'))
+            time_count = time_count + 100
 
-    f = open('ascii_art/converted/'
-             + os.path.basename(inputsec)
-             + '/converted.txt', 'w')
-    f2 = open('ascii_art/converted/'
-              + os.path.basename(inputsec)
-              + '/run.py', 'w')
-    os.remove('ascii_art/converted/'
-              + os.path.basename(inputsec)
-              + '/temp.jpg')
-    f.write('SPLIT'.join(frames))
-    ascii_artvid_run.basevideofile = os.path.basename(inputsec)
-    f2.write(ascii_artvid_run.code)
-    print('---------------------------------------')
-    print('Convert successful! Converted videos'
+        f = open('ascii_art/converted/'
+                 + os.path.basename(inputsec)
+                 + '/converted.txt', 'w')
+        f2 = open('ascii_art/converted/'
+                  + os.path.basename(inputsec)
+                  + '/run.py', 'w')
+        f3 = open('ascii_art/converted/'
+                  + os.path.basename(inputsec)
+                  + '/instructions.txt', 'w')
+        os.remove('ascii_art/converted/'
+                  + os.path.basename(inputsec)
+                  + '/temp.jpg')
+        f.write('SPLIT'.join(frames))
+        ascii_artvid_run.basevideofile = os.path.basename(inputsec)
+        f2.write(ascii_artvid_run.code)
+        f3.write(ascii_artvid_instructions.code)
+        f.close()
+        f2.close()
+        f3.close()
+        print('---------------------------------------')
+    elif inputsec.endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp')):
+        f = open('ascii_art/converted/'
+                 + os.path.basename(inputsec)
+                 + '/converted.txt', 'w')
+        f.write(handle_image_conversion(inputsec))
+        f.close()
+
+    print('Convert successful! Converted videos/images'
           ' are located at "/ascii_art/converted/".')
-    f.close()
-    f2.close()
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter video path: ')
+    inputsec = input('Enter video/image path: ')
     sys.stdout.write("\033[F")
     print('Convert path: ' + inputsec)
     conv()
