@@ -2,18 +2,16 @@ import base64
 import main
 import os
 import platform
+import sys
 
 inputsec: str = 'None'
 
 def encodebase32():
     if len(inputsec) == 0:
-        print('---------------------------------------')
         print('ERROR: Cannot encode an empty text.')
         createinput()
         return
     if inputsec == 'exit':
-        print('---------------------------------------')
-        print('Command: exit')
         print('Ending script process..')
 
         if platform.system() == 'Linux':
@@ -26,9 +24,6 @@ def encodebase32():
         return
 
     result = base64.b32encode(inputsec.encode('ascii'))
-    print('---------------------------------------')
-    print('Encode: '
-          + inputsec)
     print('Convert result: '
           + result.decode('ascii'))
     createinput()
@@ -38,6 +33,9 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter text: ')
+    sys.stdout.write("\033[F")
+    print('Encode: '
+          + inputsec)
     encodebase32()
 
 

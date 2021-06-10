@@ -2,18 +2,16 @@ import binascii
 import main
 import os
 import platform
+import sys
 
 inputsec: str = 'None'
 
 def decodehex():
     if len(inputsec) == 0:
-        print('---------------------------------------')
         print('ERROR: Cannot encode an empty text.')
         createinput()
         return
     if inputsec == 'exit':
-        print('---------------------------------------')
-        print('Command: exit')
         print('Ending script process..')
 
         if platform.system() == 'Linux':
@@ -26,9 +24,6 @@ def decodehex():
         return
 
     result = binascii.unhexlify(inputsec.encode('ascii'))
-    print('---------------------------------------')
-    print('Decode: '
-          + inputsec)
     print('Convert result: '
           + result.decode('ascii'))
     createinput()
@@ -38,6 +33,9 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter text: ')
+    sys.stdout.write("\033[F")
+    print('Decode: '
+          + inputsec)
     decodehex()
 
 

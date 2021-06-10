@@ -44,10 +44,6 @@ def promptscript():
     if len(inputsec) == 0:
         createinput()
         return
-
-    printwsave('Command: '
-          + inputsec)
-
     if inputsec == 'help':
         help.help()
         createinput()
@@ -88,12 +84,14 @@ def createinput():
     global inputsec
     printwsave('---------------------------------------')
     try:
-        inputsec = input().lower()
+        inputsec = input('Enter script name: ').lower()
+        sys.stdout.write("\033[F")
+        print('Script: '
+              + inputsec)
     except KeyboardInterrupt:
         # Added try catch method so
         # it won't raise KeyboardInterrupt.
         return
-    printwsave('---------------------------------------')
     promptscript()
 
 

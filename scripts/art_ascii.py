@@ -2,6 +2,7 @@ import cv2
 import main
 import os
 import platform
+import sys
 
 from codeholder import ascii_artvid_run
 from PIL import Image
@@ -61,13 +62,10 @@ def handle_image_conversion(image_filepath):
 
 def conv_vid():
     if len(inputsec) == 0:
-        print('---------------------------------------')
         print('ERROR: Cannot locate the specified path.')
         createinput()
         return
     if inputsec == 'exit':
-        print('---------------------------------------')
-        print('Command: exit')
         print('Ending script process..')
 
         if platform.system() == 'Linux':
@@ -111,7 +109,6 @@ def conv_vid():
     f.close()
 
     vidcap = cv2.VideoCapture(inputsec)
-    print('Convert path: ' + inputsec)
     print('---------------------------------------')
     time_count = 0
     frames = []
@@ -153,6 +150,8 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter video path: ')
+    sys.stdout.write("\033[F")
+    print('Convert path: ' + inputsec)
     conv_vid()
 
 
