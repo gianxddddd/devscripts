@@ -1,0 +1,6 @@
+opencv-python~=4.5.2.52
+Pillow~=8.2.0
+pip~=21.1.2
+numpy~=1.20.3
+setuptools~=57.0.0
+youtube_dl~=2021.5.16

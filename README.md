@@ -1,24 +1,43 @@
 ## DevScripts
-A terminal tool used by developers for purposes, featuring
-development tools!
-
+A terminal tool used by developers, with
+development features!
 
 ## Features
-The development tools features:
+The development tool features:
 
 [ArtASCII](https://github.com/Chion82/ASCII_bad_apple) - some codes taken from [Chion82's](https://github.com/Chion82/) [Bad Apple ASCII](https://github.com/Chion82/ASCII_bad_apple)    
 [Base64 Encoder/Decoder](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)  
 [Binary Converter](https://stackoverflow.com/a/18815890) - built in module by [Python](https://python.org)
-[jadx](https://github.com/skylot/jadx) - new Dex to Jar written by [skylot](https://github.com/skylot)  
+[jadx](https://github.com/skylot/jadx) - Dex to Jar written by [skylot](https://github.com/skylot)  
 [YouTubeDL](https://github.com/ytdl-org/youtube-dl) - Open source download manager for video and audio
+
+## Python
+devscripts is written in Python, and it's required packages are not included.
+
+(Linux - Ubuntu)   
+- Python is installed in Linux Distributions, if not, then install it from their [website](https://python.org) or doing `sudo apt install python3`
+- pip is also installed in Linux Distributions, otherwise, install by doing `sudo apt install pip`
+
+(Windows)   
+- Python is not installed in default, so you have to install it directly from their [website](https://python.org).
+- pip is also needed, visit this [tutorial](https://phoenixnap.com/kb/install-pip-windows) to install pip.
+
+## Required Packages
+NOTE: `install.txt` should not be deleted if you haven't installed it's required packages.
+
+If you have Python & pip installed, do the instructions below   
+to install it's required packages:
+
+- Open terminal or Command Prompt, then do `cd devscript_directory`
+- Do `pip install -r install.txt`
+
+You can now run devscripts without worries!
 
 
 ## Run
 To run devscripts, follow the instructions bellow:
 
-- Download one of the release builds at the release page.
-- Extract the archived release build.
-- Open terminal, then do `cd devscript_directory`.
+- Open terminal or Command Prompt, then do `cd devscript_directory`
 - Now do `sh devscript_linux.sh` for Linux and `devscript_windows.bat` for Windows.
 - [Optional] You can also create a symlink or a desktop shortcut for devscripts.
 
