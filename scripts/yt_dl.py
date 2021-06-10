@@ -3,7 +3,6 @@ import os
 import platform
 import re
 import random
-import sys
 
 from youtube_dl import YoutubeDL
 from youtube_dl import DownloadError
@@ -143,8 +142,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter YouTube URL: ')
-    sys.stdout.write("\033[F")
-    print('')
+    print("\x1B[F\x1B[2K", end='')
     print('URL: ' + inputsec)
     getvidsource()
 

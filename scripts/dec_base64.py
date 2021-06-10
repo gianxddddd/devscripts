@@ -3,7 +3,6 @@ import binascii
 import main
 import os
 import platform
-import sys
 
 inputsec: str = 'None'
 
@@ -39,8 +38,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter text: ')
-    sys.stdout.write("\033[F")
-    print('')
+    print("\x1B[F\x1B[2K", end='')
     print('Decode: '
           + inputsec)
     decodebase64()

@@ -85,9 +85,8 @@ def createinput():
     printwsave('---------------------------------------')
     try:
         inputsec = input().lower()
-        sys.stdout.write("\033[F")
-        print('')
-        print('Script: '
+        print("\x1B[F\x1B[2K", end='')
+        printwsave('Script: '
               + inputsec)
     except KeyboardInterrupt:
         # Added try catch method so

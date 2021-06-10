@@ -2,7 +2,6 @@ import cv2
 import main
 import os
 import platform
-import sys
 
 from codeholder import ascii_artvid_run
 from codeholder import ascii_artvid_instructions
@@ -163,8 +162,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter video/image path: ')
-    sys.stdout.write("\033[F")
-    print('')
+    print("\x1B[F\x1B[2K", end='')
     print('Convert path: ' + inputsec)
     conv()
 
