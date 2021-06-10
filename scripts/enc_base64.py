@@ -24,6 +24,7 @@ def encodebase64():
         os.system(main.pythonExec + ' scripts/main.py')
         exit(0)
         return
+
     result = base64.b64encode(inputsec.encode('ascii'))
     print('---------------------------------------')
     print('Encode: '
