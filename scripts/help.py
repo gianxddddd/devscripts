@@ -4,7 +4,7 @@ def help():
     print('---------------------------------------')
     print('-- Help --')
     print('---------------------------------------')
-    print('ArtASCII [art_ascii] - Converts a video/image into ASCII! Made by Chiron85.')
+    print('ArtASCII [art_ascii] - Converts a video/image into ASCII! Made by Chion82.')
     print('Binary Converter [binary_conv] - Converts your text into Binary.')
     print('Base64 Converter [dec_base64 | enc_base64] - Decodes/Encodes your text into Base64.')
     print('Base32 Converter [dec_base32 | enc_base32] - Decodes/Encodes your text into Base32.')
