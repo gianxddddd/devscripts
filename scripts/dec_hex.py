@@ -32,7 +32,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter text: ')
-    print("\x1B[F\x1B[2K", end='')
+    print('\033[A                             \033[A')
     print('Decode: '
           + inputsec)
     decodehex()

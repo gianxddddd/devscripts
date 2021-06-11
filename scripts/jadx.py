@@ -46,7 +46,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter DEX/APK path: ')
-    print("\x1B[F\x1B[2K", end='')
+    print('\033[A                             \033[A')
     print('Decompile: ' + os.path.basename(inputsec))
     ext()
 

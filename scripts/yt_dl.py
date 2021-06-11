@@ -75,6 +75,7 @@ def getvidsource():
     print('-audio = Downloads the audio to local storage.')
     print('---------------------------------------')
     outputsec = input('Enter output type: ')
+    print("\x1B[F\x1B[2K", end='')
 
     if outputsec == '-srcOnly':
         with YoutubeDL(audiodlopts) as ytdl:
@@ -85,8 +86,8 @@ def getvidsource():
         # Ask for video quality
         print('-- Video Quality --')
         print('---------------------------------------')
-        print('better = Suitable for good connections & consumes more data.')
-        print('worst = Consumes less data & friendly to weak connections.')
+        print('-better = Suitable for good connections & consumes more data.')
+        print('-worst = Consumes less data & friendly to weak connections.')
         print('---------------------------------------')
         print('Manual selection:')
         print('-1080p60 = Higher resolution, huge file size, 60fps')
@@ -97,11 +98,11 @@ def getvidsource():
         print('-360p = Low resolution, low file size, 28fps')
         print('---------------------------------------')
         qualitysec = input('Enter video quality: ')
-        print('---------------------------------------')
+        print("\x1B[F\x1B[2K", end='')
 
-        if qualitysec == 'better':
+        if qualitysec == '-better':
             videodlopts['format'] = 'bestvideo+bestaudio/best'
-        elif qualitysec == 'worst':
+        elif qualitysec == '-worst':
             videodlopts['format'] = 'worstvideo+worstaudio/worst'
         elif qualitysec == '-1080p60':
             videodlopts['format'] = '299+bestaudio'
@@ -120,14 +121,22 @@ def getvidsource():
             return
         try:
             with YoutubeDL(videodlopts) as ytdl:
+                print('Output: ' + outputsec)
+                print('Video quality: ' + qualitysec)
+                print('Download path: /youtube_dl/downloads')
+                print('YouTubeDL: Downloading...')
                 ytdl.download([inputsec])
         except DownloadError:
             print('ERROR: Cannot download video.')
             return
+        print('---------------------------------------')
         print('Download successful! Located at "youtube_dl/downloads".')
     elif outputsec == '-audio':
         try:
             with YoutubeDL(audiodlopts) as ytdl:
+                print('Output: ' + outputsec)
+                print('Download path: /youtube_dl/downloads')
+                print('YouTubeDL: Downloading...')
                 ytdl.download([inputsec])
         except DownloadError:
             print('ERROR: Cannot download audio.')
@@ -142,7 +151,7 @@ def createinput():
     global inputsec
     print('---------------------------------------')
     inputsec = input('Enter YouTube URL: ')
-    print("\x1B[F\x1B[2K", end='')
+    print('\033[A                             \033[A')
     print('URL: ' + inputsec)
     getvidsource()
 

@@ -1,4 +1,6 @@
 import getpass
+import time
+
 import help
 import os
 import platform
@@ -45,6 +47,7 @@ def promptscript():
         createinput()
         return
     if inputsec == 'help':
+        print('Help: entering help command...')
         help.help()
         createinput()
         return
@@ -85,7 +88,7 @@ def createinput():
     printwsave('---------------------------------------')
     try:
         inputsec = input().lower()
-        print("\x1B[F\x1B[2K", end='')
+        print('\033[A                             \033[A')
         printwsave('Script: '
               + inputsec)
     except KeyboardInterrupt:
