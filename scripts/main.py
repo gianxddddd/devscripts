@@ -1,10 +1,11 @@
 import getpass
-import time
-
 import help
 import os
 import platform
 import sys
+import time
+
+from displayer import clock
 
 # If this raises error, change it to earlier versions of python interpreter.
 # (Don't use Python 2 as the interpreter)
@@ -25,8 +26,8 @@ def printwsave(message):
 
 
 def execscript(path: str):
-    printwsave('Executing python exec'
-          ' with ' + inputsec + '..')
+    printwsave('Script: ' + inputsec)
+    printwsave('Launch: start script')
 
     if not os.path.exists('history'):
         os.mkdir('history')
@@ -44,10 +45,12 @@ def execscript(path: str):
 
 def promptscript():
     if len(inputsec) == 0:
+        printwsave('ERROR: Cannot find the script or command'
+                   """ you're looking for.""")
         createinput()
         return
     if inputsec == 'help':
-        print('Help: entering help command...')
+        printwsave('Command: entering help command...')
         help.help()
         createinput()
         return
@@ -57,29 +60,12 @@ def promptscript():
         elif platform.system() == 'Windows':
             os.system('cls')
 
+        printwsave('Command: Killing main script...')
         exit(0)
-    elif inputsec == 'enc_base64':
+    elif os.path.exists('scripts/' + inputsec + '.py'):
         execscript(' scripts/enc_base64.py')
-    elif inputsec == 'dec_base64':
-        execscript(' scripts/dec_base64.py')
-    elif inputsec == 'enc_base32':
-        execscript(' scripts/enc_base32.py')
-    elif inputsec == 'dec_base32':
-        execscript(' scripts/dec_base32.py')
-    elif inputsec == 'enc_hex':
-        execscript(' scripts/enc_hex.py')
-    elif inputsec == 'dec_hex':
-        execscript(' scripts/dec_hex.py')
-    elif inputsec == 'art_ascii':
-        execscript(' scripts/art_ascii.py')
-    elif inputsec == 'jadx':
-        execscript(' scripts/jadx.py')
-    elif inputsec == 'youtube_dl':
-        execscript(' scripts/yt_dl.py')
-    elif inputsec == 'binary_conv':
-        execscript(' scripts/binary_conv.py')
     else:
-        printwsave("""ERROR: Cannot find the script you're looking for.""")
+        printwsave("""ERROR: Cannot find the script or command you're looking for.""")
         createinput()
 
 
@@ -89,8 +75,6 @@ def createinput():
     try:
         inputsec = input().lower()
         print('\033[A                             \033[A')
-        printwsave('Script: '
-              + inputsec)
     except KeyboardInterrupt:
         # Added try catch method so
         # it won't raise KeyboardInterrupt.
@@ -115,7 +99,9 @@ def main():
         systemOS = 'Microsoft Windows ' + platform.version()
 
     printwsave('DevScripts main.py')
-    printwsave('build 4403, 06-01-21 4:09:20')
+    printwsave('build 4405, '
+               + clock.getdate()[:8] + ' '
+               + clock.get24clock())
     printwsave('Running on ' + systemOS)
     printwsave('Hello, ' + getpass.getuser()
           + '!')
