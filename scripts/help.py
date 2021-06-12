@@ -10,6 +10,6 @@ def help():
     print('Base32 Converter [dec_base32 | enc_base32] - Decodes/Encodes your text into Base32.')
     print('Hex Converter [dec_hex | enc_dex] - Decodes/Encodes your text into hex.')
     print('Jadx [jadx] - Improved & updated version of Dex2Jar, Made by skylot.')
-    print('YouTubeDL [youtube_dl] - Open source download manager for video and audio from YouTube.')
+    print('YouTubeDL [yt_dl] - Open source download manager for video and audio from YouTube.')
     print('---------------------------------------')
     print('If you found a bug/error, please send the report to borcillofg2020@gmail.com')
