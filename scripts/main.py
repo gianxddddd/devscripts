@@ -3,8 +3,8 @@ import help
 import os
 import platform
 import sys
-import time
 
+from displayer import console
 from displayer import clock
 
 # If this raises error, change it to earlier versions of python interpreter.
@@ -27,7 +27,7 @@ def printwsave(message):
 
 def execscript(path: str):
     printwsave('Script: ' + inputsec)
-    printwsave('Launch: start script')
+    printwsave(console.success('Launch: start script'))
 
     if not os.path.exists('history'):
         os.mkdir('history')
@@ -45,8 +45,8 @@ def execscript(path: str):
 
 def promptscript():
     if len(inputsec) == 0:
-        printwsave('ERROR: Cannot find the script or command'
-                   """ you're looking for.""")
+        printwsave(console.err('ERROR: Cannot find the script or command'
+                   """ you're looking for."""))
         createinput()
         return
     if inputsec == 'help':
@@ -66,7 +66,8 @@ def promptscript():
     elif os.path.exists('scripts/' + inputsec + '.py'):
         execscript(' scripts/' + inputsec + '.py')
     else:
-        printwsave("""ERROR: Cannot find the script or command you're looking for.""")
+        printwsave('Command: ' + inputsec)
+        printwsave(console.err("""ERROR: Cannot find the script or command you're looking for."""))
         createinput()
 
 
@@ -75,7 +76,7 @@ def createinput():
     printwsave('---------------------------------------')
     try:
         inputsec = input().lower()
-        print('\033[A                             \033[A')
+        console.rmline_by_count(1)
     except KeyboardInterrupt:
         # Added try catch method so
         # it won't raise KeyboardInterrupt.
@@ -99,7 +100,7 @@ def main():
     elif platform.system() == 'Windows':
         systemOS = 'Microsoft Windows ' + platform.version()
 
-    printwsave('DevScripts main.py')
+    printwsave(console.head('DevScripts main.py'))
     printwsave('build 4405, '
                + clock.getdate()[:8] + ' '
                + clock.get24clock())

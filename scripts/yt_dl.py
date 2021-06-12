@@ -4,6 +4,7 @@ import platform
 import re
 import random
 
+from displayer import console
 from youtube_dl import YoutubeDL
 from youtube_dl import DownloadError
 
@@ -57,11 +58,11 @@ def getvidsource():
         exit(0)
         return
     if len(inputsec) == 0:
-        print('ERROR: No URL argument given.')
+        print(console.err('ERROR: No URL argument given.'))
         createinput()
         return
     if re.match(regex, inputsec) is None:
-        print('ERROR: Url is malformed, or not a valid url.')
+        print(console.err('ERROR: Url is malformed, or not a valid url.'))
         createinput()
         return
     if not os.path.exists('youtube_dl/downloads'):
@@ -74,8 +75,9 @@ def getvidsource():
     print('-video = Downloads the video to local storage.')
     print('-audio = Downloads the audio to local storage.')
     print('---------------------------------------')
-    outputsec = input('Enter output type: ')
-    print('\033[A                             \033[A')
+    print('Enter output type: ')
+    outputsec = input()
+    console.rmline_by_count(2)
 
     if outputsec == '-srcOnly':
         with YoutubeDL(audiodlopts) as ytdl:
@@ -97,8 +99,9 @@ def getvidsource():
         print('-480p = Normal resolution, normal file size, 30fps')
         print('-360p = Low resolution, low file size, 28fps')
         print('---------------------------------------')
-        qualitysec = input('Enter video quality: ')
-        print('\033[A                             \033[A')
+        print('Enter video quality: ')
+        qualitysec = input()
+        console.rmline_by_count(2)
 
         if qualitysec == '-better':
             videodlopts['format'] = 'bestvideo+bestaudio/best'
@@ -117,45 +120,48 @@ def getvidsource():
         elif qualitysec == '-360p':
             videodlopts['format'] = '134+worstaudio'
         else:
-            print('ERROR: Video quality not specified.')
+            print(console.err('ERROR: Video quality not specified.'))
             return
         try:
             with YoutubeDL(videodlopts) as ytdl:
-                print('Output: ' + outputsec)
-                print('Video quality: ' + qualitysec)
-                print('Download path: /youtube_dl/downloads')
-                print('YouTubeDL: Downloading...')
+                print(console.success('Output: ' + outputsec))
+                print(console.success('Video quality: ' + qualitysec))
+                print(console.success('Download path: /youtube_dl/downloads'))
+                print(console.success('YouTubeDL: Downloading...'))
                 ytdl.download([inputsec])
         except DownloadError:
-            print('ERROR: Cannot download video.')
+            print(console.err('ERROR: Cannot download video.'))
             return
         print('---------------------------------------')
-        print('Download successful! Located at "youtube_dl/downloads".')
+        print(console.success('FINISH: Download successful!'
+                              ' Located at "youtube_dl/downloads".'))
     elif outputsec == '-audio':
         try:
             with YoutubeDL(audiodlopts) as ytdl:
-                print('Output: ' + outputsec)
-                print('Download path: /youtube_dl/downloads')
-                print('YouTubeDL: Downloading...')
+                print(console.success('Output: ' + outputsec))
+                print(console.success('Download path: /youtube_dl/downloads'))
+                print(console.success('YouTubeDL: Downloading...'))
                 ytdl.download([inputsec])
         except DownloadError:
-            print('ERROR: Cannot download audio.')
+            print(console.err('ERROR: Cannot download audio.'))
             return
-        print('Download successful! Located at "youtube_dl/downloads".')
+        print(console.success('FINISH: Download successful!'
+                              ' Located at "youtube_dl/downloads".'))
     else:
-        print('ERROR: Output type not specified.')
+        print(console.err('ERROR: Output type not specified.'))
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter YouTube URL: ')
-    print('\033[A                             \033[A')
+    print('Enter video URL: ')
+    inputsec = input()
+    console.rmline_by_count(2)
     print('URL: ' + inputsec)
     getvidsource()
 
 
-print('DevScripts yt_dl.py')
+print(console.head('DevScripts yt_dl.py'))
 print('YouTubeDL - version 2021.5.16')
 createinput()

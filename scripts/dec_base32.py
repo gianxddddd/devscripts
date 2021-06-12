@@ -4,11 +4,13 @@ import main
 import os
 import platform
 
+from displayer import console
+
 inputsec: str = 'None'
 
 def decodebase32():
     if len(inputsec) == 0:
-        print('ERROR: Cannot decode an empty text.')
+        print(console.err('ERROR: Cannot decode an empty text.'))
         createinput()
         return
     if inputsec == 'exit':
@@ -25,25 +27,26 @@ def decodebase32():
     try:
         result = base64.b32decode(inputsec.encode('ascii'))
     except binascii.Error:
-        print('ERROR: Specified text is not encoded.')
+        print(console.err('ERROR: Specified text is not encoded.'))
         createinput()
         return
 
-    print('Convert result: '
-          + result.decode('ascii'))
+    print(console.success('Convert result: '
+          + result.decode('ascii')))
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter text: ')
-    print('\033[A                             \033[A')
+    print('Enter base32 string: ')
+    inputsec = input()
+    console.rmline_by_count(2)
     print('Decode: '
           + inputsec)
     decodebase32()
 
 
-print('DevScripts dec_base32.py')
+print(console.head('DevScripts dec_base32.py'))
 print('Base32 Decoder')
 createinput()

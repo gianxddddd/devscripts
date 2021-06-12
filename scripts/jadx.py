@@ -2,11 +2,13 @@ import main
 import os
 import platform
 
+from displayer import console
+
 inputsec: str = 'None'
 
 def ext():
     if len(inputsec) == 0:
-        print('ERROR: Cannot locate the specified path.')
+        print(console.err('ERROR: Cannot locate the specified path.'))
         createinput()
         return
     if inputsec == 'exit':
@@ -21,7 +23,7 @@ def ext():
         exit(0)
         return
     if not os.path.exists(inputsec):
-        print('ERROR: Path does not exists or is a directory.')
+        print(console.err('ERROR: Path does not exists or is a directory.'))
         createinput()
         return
     if not os.path.exists('jadx/decompiled/'):
@@ -36,21 +38,22 @@ def ext():
               + ' '
               + inputsec)
     print('---------------------------------------')
-    print('Decompile successful!'
-          + ' Decompiled files are located'
-          + ' inside "jadx/decompiled/".')
+    print(console.success('FINISH: Decompile success!'
+                         + ' Decompiled files are located'
+                         + ' inside "jadx/decompiled/".'))
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter DEX/APK path: ')
-    print('\033[A                             \033[A')
+    print('Enter DEX or APK path: ')
+    inputsec = input()
+    console.rmline_by_count(2)
     print('Decompile: ' + os.path.basename(inputsec))
     ext()
 
 
-print('DevScripts jadx.py')
+print(console.head('DevScripts jadx.py'))
 print('jadx - version 1.2.0')
 createinput()

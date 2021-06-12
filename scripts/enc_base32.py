@@ -3,11 +3,13 @@ import main
 import os
 import platform
 
+from displayer import console
+
 inputsec: str = 'None'
 
 def encodebase32():
     if len(inputsec) == 0:
-        print('ERROR: Cannot encode an empty text.')
+        print(console.err('ERROR: Cannot encode an empty text.'))
         createinput()
         return
     if inputsec == 'exit':
@@ -23,21 +25,22 @@ def encodebase32():
         return
 
     result = base64.b32encode(inputsec.encode('ascii'))
-    print('Convert result: '
-          + result.decode('ascii'))
+    print(console.success('Convert result: '
+          + result.decode('ascii')))
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter text: ')
-    print('\033[A                             \033[A')
+    print('Enter text: ')
+    inputsec = input()
+    console.rmline_by_count(2)
     print('Encode: '
           + inputsec)
     encodebase32()
 
 
-print('DevScripts enc_base32.py')
+print(console.head('DevScripts enc_base32.py'))
 print('Base32 Encoder')
 createinput()

@@ -3,6 +3,7 @@ import main
 import os
 import platform
 
+from displayer import console
 from codeholder import ascii_artvid_run
 from codeholder import ascii_artvid_instructions
 from PIL import Image
@@ -54,7 +55,8 @@ def handle_image_conversion(image_filepath):
     try:
         image = Image.open(image_filepath)
     except Exception as e:
-        print("Unable to open image file {image_filepath}.".format(image_filepath=image_filepath))
+        print(console.err('ERROR: Unable to open image file {image_filepath}.')
+              .format(image_filepath=image_filepath))
         return
     image_ascii = convert_image_to_ascii(image)
     return image_ascii
@@ -62,7 +64,7 @@ def handle_image_conversion(image_filepath):
 
 def conv():
     if len(inputsec) == 0:
-        print('ERROR: Cannot locate the specified path.')
+        print(console.err('ERROR: Cannot locate the specified path.'))
         createinput()
         return
     if inputsec == 'exit':
@@ -77,7 +79,7 @@ def conv():
         exit(0)
         return
     if not os.path.exists(inputsec):
-        print('ERROR: Path does not exists or is a directory.')
+        print(console.err('ERROR: Path does not exists or is a directory.'))
         createinput()
         return
     if not os.path.exists('ascii_art/converted/'
@@ -153,20 +155,21 @@ def conv():
         f.write(handle_image_conversion(inputsec))
         f.close()
 
-    print('Convert successful! Converted videos/images'
-          ' are located at "/ascii_art/converted/".')
+    print(console.success('FINISH: Convert success! Converted videos/images'
+          ' are located at "/ascii_art/converted/".'))
     createinput()
 
 
 def createinput():
     global inputsec
     print('---------------------------------------')
-    inputsec = input('Enter video/image path: ')
-    print('\033[A                             \033[A')
+    print('Enter video or image path: ')
+    inputsec = input()
+    console.rmline_by_count(2)
     print('Convert path: ' + inputsec)
     conv()
 
 
-print('DevScripts art_ascii.py')
+print(console.head('DevScripts art_ascii.py'))
 print('ArtASCII')
 createinput()
