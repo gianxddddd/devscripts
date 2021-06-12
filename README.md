@@ -24,6 +24,9 @@ devscripts is written in Python, and it's required packages are not included.
 - Python is not installed in default, so you have to install it directly from their [website](https://python.org).
 - pip is also needed, visit this [tutorial](https://phoenixnap.com/kb/install-pip-windows) to install pip.
 
+## OpenJDK
+One of the features, jadx, is based on Java, if you don't have Java installed, you can [install](https://www.java.com/en/download/) here.
+
 ## Required Packages
 NOTE: `install.txt` should not be deleted if you haven't installed it's required packages.
 
