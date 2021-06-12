@@ -75,7 +75,7 @@ def getvidsource():
     print('-audio = Downloads the audio to local storage.')
     print('---------------------------------------')
     outputsec = input('Enter output type: ')
-    print("\x1B[F\x1B[2K", end='')
+    print('\033[A                             \033[A')
 
     if outputsec == '-srcOnly':
         with YoutubeDL(audiodlopts) as ytdl:
@@ -98,7 +98,7 @@ def getvidsource():
         print('-360p = Low resolution, low file size, 28fps')
         print('---------------------------------------')
         qualitysec = input('Enter video quality: ')
-        print("\x1B[F\x1B[2K", end='')
+        print('\033[A                             \033[A')
 
         if qualitysec == '-better':
             videodlopts['format'] = 'bestvideo+bestaudio/best'

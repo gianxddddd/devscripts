@@ -55,15 +55,16 @@ def promptscript():
         createinput()
         return
     elif inputsec == 'exit':
+        printwsave('Command: Killing main script...')
+        
         if platform.system() == 'Linux':
             os.system('clear')
         elif platform.system() == 'Windows':
             os.system('cls')
 
-        printwsave('Command: Killing main script...')
         exit(0)
     elif os.path.exists('scripts/' + inputsec + '.py'):
-        execscript(' scripts/enc_base64.py')
+        execscript(' scripts/' + inputsec + '.py')
     else:
         printwsave("""ERROR: Cannot find the script or command you're looking for.""")
         createinput()

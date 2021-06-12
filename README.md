@@ -31,7 +31,7 @@ If you have Python & pip installed, do the instructions below
 to install it's required packages:
 
 - Open terminal or Command Prompt, then do `cd devscript_directory`
-- Do `pip install -r install.txt`
+- Do `pip install --no-warn-script-location -r install.txt`
 
 You can now run devscripts without worries!
 
