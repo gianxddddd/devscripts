@@ -1,8 +1,10 @@
 # Intended to create a separated file so it doesn't bloat scripts.
+from displayer import console
+
 
 def help():
     print('---------------------------------------')
-    print('-- Help --')
+    print(console.head('-- Help --'))
     print('---------------------------------------')
     print('ArtASCII [art_ascii] - Converts a video/image into ASCII! Made by Chion82.')
     print('Binary Converter [binary_conv] - Converts your text into Binary.')
