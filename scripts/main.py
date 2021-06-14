@@ -6,6 +6,7 @@ import sys
 
 from displayer import console
 from displayer import clock
+from pathlib import Path
 
 # If this raises error, change it to earlier versions of python interpreter.
 # (Don't use Python 2 as the interpreter)
@@ -71,6 +72,21 @@ def promptscript():
         createinput()
 
 
+def createalias():
+    if platform.system() == 'Windows':
+        return
+
+    f = open(str(Path.home()) + '/.bashrc', 'r')
+
+    if not "alias devscripts='sh " + main.defLocation + "devscript_linux.sh'" in f.read():
+        print('Create command')
+        f2 = open(str(Path.home()) + '/.bashrc', 'a')
+        f2.write("alias devscripts='sh " + main.defLocation + "devscript_linux.sh'")
+        f2.close()
+
+    f.close()
+
+
 def createinput():
     global inputsec
     printwsave('---------------------------------------')
@@ -100,6 +116,7 @@ def main():
     elif platform.system() == 'Windows':
         systemOS = 'Microsoft Windows ' + platform.version()
 
+    createalias()
     printwsave(console.head('DevScripts main.py'))
     printwsave('build 4405, '
                + clock.getdate()[:8] + ' '
