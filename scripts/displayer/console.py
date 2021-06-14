@@ -9,7 +9,7 @@ def displayfeaturedep(feature: str):
 
 def rmline_by_count(count: int):
     for _ in range(count):
-        print('\033[A                \033[A')
+        print('\033[A                                                                                     \033[A')
 
 
 ## used for printing with colors

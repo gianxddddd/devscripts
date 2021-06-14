@@ -78,10 +78,10 @@ def createalias():
 
     f = open(str(Path.home()) + '/.bashrc', 'r')
 
-    if not "alias devscripts='sh " + main.defLocation + "devscript_linux.sh'" in f.read():
+    if not "alias devscripts='sh " + defLocation + "devscript_linux.sh'" in f.read():
         print('Create command')
         f2 = open(str(Path.home()) + '/.bashrc', 'a')
-        f2.write("alias devscripts='sh " + main.defLocation + "devscript_linux.sh'")
+        f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
         f2.close()
 
     f.close()
@@ -101,6 +101,8 @@ def createinput():
 
 
 def main():
+    createalias()
+
     # If the main script is being re-set as the process again,
     # restore the previous session that the main script had.
     if os.path.exists('history'):
@@ -116,7 +118,7 @@ def main():
     elif platform.system() == 'Windows':
         systemOS = 'Microsoft Windows ' + platform.version()
 
-    createalias()
+
     printwsave(console.head('DevScripts main.py'))
     printwsave('build 4405, '
                + clock.getdate()[:8] + ' '
