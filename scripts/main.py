@@ -64,6 +64,10 @@ def promptscript():
             os.system('cls')
 
         exit(0)
+    elif inputsec.startswith('echo'):
+        printwsave('Command: echo')
+        printwsave(inputsec[4:])
+        createinput()
     elif os.path.exists('scripts/' + inputsec + '.py'):
         execscript(' scripts/' + inputsec + '.py')
     else:
