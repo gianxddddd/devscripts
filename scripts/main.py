@@ -2,6 +2,7 @@ import getpass
 import help
 import os
 import platform
+import shutil
 import sys
 
 from displayer import console
@@ -64,9 +65,25 @@ def promptscript():
             os.system('cls')
 
         exit(0)
+    elif inputsec == 'clean':
+        printwsave('Command: clean')
+
+        printwsave('CLEAN: scripts')
+        if os.path.exists('scripts/__pycache__'):
+            shutil.rmtree('scripts/__pycache__')
+        else:
+            printwsave(console.err('SUCCESS: directory already deleted'))
+
+        printwsave(console.success('SUCCESS: Done cleaning up files'))
+        createinput()
     elif inputsec.startswith('echo'):
         printwsave('Command: echo')
-        printwsave(inputsec[4:])
+
+        if inputsec == 'echo':
+            printwsave(inputsec[4:])
+        elif inputsec != 'echo':
+            printwsave(console.err('ERROR: No arguments were given.'))
+
         createinput()
     elif os.path.exists('scripts/' + inputsec + '.py'):
         execscript(' scripts/' + inputsec + '.py')
