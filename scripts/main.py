@@ -79,9 +79,9 @@ def promptscript():
     elif inputsec.startswith('echo'):
         printwsave('Command: echo')
 
-        if inputsec == 'echo':
+        if inputsec != 'echo':
             printwsave(inputsec[4:])
-        elif inputsec != 'echo':
+        elif inputsec == 'echo':
             printwsave(console.err('ERROR: No arguments were given.'))
 
         createinput()
