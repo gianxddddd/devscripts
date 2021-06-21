@@ -83,10 +83,13 @@ def createalias():
     f = open(str(Path.home()) + '/.bashrc', 'r')
 
     if not "alias devscripts='sh " + defLocation + "devscript_linux.sh'" in f.read():
-        print('Create command')
-        f2 = open(str(Path.home()) + '/.bashrc', 'a')
-        f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
-        f2.close()
+        print('Command: Create alias')
+        try:
+            f2 = open(str(Path.home()) + '/.bashrc', 'a')
+            f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
+            f2.close()
+        except:
+            print(console.err('ERROR: Failed to create alias.'))
 
     f.close()
 
