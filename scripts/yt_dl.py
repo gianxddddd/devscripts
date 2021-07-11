@@ -5,6 +5,7 @@ import re
 import random
 
 from displayer import console
+from mutagen.mp4 import MP4
 from youtube_dl import YoutubeDL
 from youtube_dl import DownloadError
 
@@ -136,6 +137,9 @@ def getvidsource():
         print(console.success('FINISH: Download successful!'
                               ' Located at "youtube_dl/downloads".'))
     elif outputsec == '-audio':
+        with YoutubeDL(audiodlopts) as infodl:
+            info = infodl.extract_info(inputsec, download=False)
+            audiodlopts['outtmpl'] = 'youtube_dl/downloads/' + info['title'] + '.' + info['ext']
         try:
             with YoutubeDL(audiodlopts) as ytdl:
                 print(console.success('Output: ' + outputsec))
@@ -145,6 +149,10 @@ def getvidsource():
         except DownloadError:
             print(console.err('ERROR: Cannot download audio.'))
             return
+        meta = MP4('youtube_dl/downloads/' + info['title'] + '.' + info['ext']).tags
+        meta['\xa9nam'] = info['title']
+        meta['\xa9ART'] = info['uploader']
+        meta.save('youtube_dl/downloads/' + info['title'] + '.' + info['ext'])
         print(console.success('FINISH: Download successful!'
                               ' Located at "youtube_dl/downloads".'))
     else:
