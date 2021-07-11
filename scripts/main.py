@@ -14,8 +14,7 @@ from pathlib import Path
 pythonExec = sys.executable
 
 # If this raises FileNotFound, change the path.
-defLocation = ' ' \
-              + os.path.dirname(os.path.realpath(__file__))\
+defLocation = os.path.dirname(os.path.realpath(__file__))\
                   .strip('scripts')
 
 inputsec: str = 'None'
