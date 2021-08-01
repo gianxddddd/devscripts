@@ -2,6 +2,7 @@ import getpass
 import help
 import os
 import platform
+import shutil
 import sys
 
 from displayer import console
@@ -13,8 +14,7 @@ from pathlib import Path
 pythonExec = sys.executable
 
 # If this raises FileNotFound, change the path.
-defLocation = ' ' \
-              + os.path.dirname(os.path.realpath(__file__))\
+defLocation = os.path.dirname(os.path.realpath(__file__))\
                   .strip('scripts')
 
 inputsec: str = 'None'
@@ -64,9 +64,25 @@ def promptscript():
             os.system('cls')
 
         exit(0)
+    elif inputsec == 'clean':
+        printwsave('Command: clean')
+
+        printwsave('CLEAN: scripts')
+        if os.path.exists('scripts/__pycache__'):
+            shutil.rmtree('scripts/__pycache__')
+        else:
+            printwsave(console.err('SUCCESS: directory already deleted'))
+
+        printwsave(console.success('SUCCESS: Done cleaning up files'))
+        createinput()
     elif inputsec.startswith('echo'):
         printwsave('Command: echo')
-        printwsave(inputsec[4:])
+
+        if inputsec != 'echo':
+            printwsave(inputsec[4:])
+        elif inputsec == 'echo':
+            printwsave(console.err('ERROR: No arguments were given.'))
+
         createinput()
     elif os.path.exists('scripts/' + inputsec + '.py'):
         execscript(' scripts/' + inputsec + '.py')
@@ -83,10 +99,13 @@ def createalias():
     f = open(str(Path.home()) + '/.bashrc', 'r')
 
     if not "alias devscripts='sh " + defLocation + "devscript_linux.sh'" in f.read():
-        print('Create command')
-        f2 = open(str(Path.home()) + '/.bashrc', 'a')
-        f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
-        f2.close()
+        print('Command: Create alias')
+        try:
+            f2 = open(str(Path.home()) + '/.bashrc', 'a')
+            f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
+            f2.close()
+        except:
+            print(console.err('ERROR: Failed to create alias.'))
 
     f.close()
 
