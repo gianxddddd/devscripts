@@ -5,6 +5,7 @@ development features!
 ## Features
 The development tool features:
 
+Alias Creator - Made by me for stuff.             
 [ArtASCII](https://github.com/Chion82/ASCII_bad_apple) - some codes taken from [Chion82's](https://github.com/Chion82/) [Bad Apple ASCII](https://github.com/Chion82/ASCII_bad_apple)    
 [Binary Converter](https://stackoverflow.com/a/18815890) - code written from an answer in [Stack Overflow](https://stackoverflow.com)    
 [Base32 Converter](https://docs.python.org/3/library/base64.html) - built in module by [Python](https://python.org)    
