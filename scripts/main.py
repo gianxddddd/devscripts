@@ -68,12 +68,14 @@ def promptscript():
         printwsave('Command: clean')
 
         printwsave('CLEAN: scripts')
-        if os.path.exists('scripts/__pycache__'):
+        if os.path.exists('scripts/__pycache__') or \
+                os.path.exists('scripts/displayer/__pycache__') or \
+                os.path.exists('scripts/codehelper/__pycache__'):
             shutil.rmtree('scripts/__pycache__')
             shutil.rmtree('scripts/displayer/__pycache__')
             shutil.rmtree('scripts/codehelper/__pycache__')
         else:
-            printwsave(console.err('ERROR: directory already deleted'))
+            printwsave(console.err('ERROR: Scripts already cleaned.'))
 
         printwsave(console.success('SUCCESS: Done cleaning up files'))
         createinput()
