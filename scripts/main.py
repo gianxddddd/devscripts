@@ -70,8 +70,10 @@ def promptscript():
         printwsave('CLEAN: scripts')
         if os.path.exists('scripts/__pycache__'):
             shutil.rmtree('scripts/__pycache__')
+            shutil.rmtree('scripts/displayer/__pycache__')
+            shutil.rmtree('scripts/codehelper/__pycache__')
         else:
-            printwsave(console.err('SUCCESS: directory already deleted'))
+            printwsave(console.err('ERROR: directory already deleted'))
 
         printwsave(console.success('SUCCESS: Done cleaning up files'))
         createinput()
@@ -99,13 +101,13 @@ def createalias():
     f = open(str(Path.home()) + '/.bashrc', 'r')
 
     if not "alias devscripts='sh " + defLocation + "devscript_linux.sh'" in f.read():
-        print('Command: Create alias')
+        print('Thank you for using DevScripts! You can now execute "devscripts" in the console.')
         try:
             f2 = open(str(Path.home()) + '/.bashrc', 'a')
             f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
             f2.close()
         except:
-            print(console.err('ERROR: Failed to create alias.'))
+            print(console.err('ERROR: Thank you for using DevScripts!'))
 
     f.close()
 
@@ -124,6 +126,7 @@ def createinput():
 
 
 def main():
+    global systemOS
     createalias()
 
     # If the main script is being re-set as the process again,
@@ -140,7 +143,6 @@ def main():
         systemOS = 'GNU/Linux ' + platform.release()
     elif platform.system() == 'Windows':
         systemOS = 'Microsoft Windows ' + platform.version()
-
 
     printwsave(console.head('DevScripts main.py'))
     printwsave('build 4405, '
