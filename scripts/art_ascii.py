@@ -1,4 +1,3 @@
-import cv2
 import main
 import os
 import platform
@@ -6,8 +5,16 @@ import platform
 from displayer import console
 from codeholder import ascii_artvid_run
 from codeholder import ascii_artvid_instructions
-from PIL import Image
 from shutil import copyfile
+
+try:
+    import cv2
+    from PIL import Image
+except ModuleNotFoundError:
+    print(console.err('Failed to get external packages, make sure you have installed them using "pip install -r '
+                      'install.txt, exiting script...'))
+    os.system(main.pythonExec + ' scripts/main.py')
+    exit(0)
 
 video_length = 218
 ASCII_CHARS = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`\'. '
