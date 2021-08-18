@@ -26,6 +26,9 @@ def ext():
         print(console.err('ERROR: Path does not exists or is a directory.'))
         createinput()
         return
+    if not os.path.exists('libs/jadx-1.2.0/bin/jadx'):
+        print(console.err('ERROR: jadx executable missing.'))
+        return
     if not os.path.exists('jadx/decompiled/'):
         os.makedirs('jadx/decompiled/')
         return

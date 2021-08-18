@@ -5,9 +5,16 @@ import re
 import random
 
 from displayer import console
-from mutagen.mp4 import MP4
-from youtube_dl import YoutubeDL
-from youtube_dl import DownloadError
+
+try:
+    from mutagen.mp4 import MP4
+    from youtube_dl import YoutubeDL
+    from youtube_dl import DownloadError
+except ModuleNotFoundError:
+    print(console.err('Failed to get external packages, make sure you have installed them using "pip install -r '
+                      'install.txt, exiting script...'))
+    os.system(main.pythonExec + ' scripts/main.py')
+    exit(0)
 
 inputsec: str = 'None'
 regex = re.compile(
