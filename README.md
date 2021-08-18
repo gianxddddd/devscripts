@@ -1,3 +1,6 @@
+## Project Deprecated
+Sadly, devscripts is no longer maintained and updated, which means it is deprecated.
+
 ## DevScripts
 A terminal tool used by developers, with
 development features!
