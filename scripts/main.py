@@ -74,10 +74,10 @@ def promptscript():
             shutil.rmtree('scripts/__pycache__')
             shutil.rmtree('scripts/displayer/__pycache__')
             shutil.rmtree('scripts/codeholder/__pycache__')
+            printwsave(console.success('SUCCESS: Done cleaning up files'))
         else:
             printwsave(console.err('ERROR: Scripts already cleaned.'))
 
-        printwsave(console.success('SUCCESS: Done cleaning up files'))
         createinput()
     elif inputsec.startswith('echo'):
         printwsave('Command: echo')
@@ -109,7 +109,7 @@ def createalias():
             f2.write("alias devscripts='sh " + defLocation + "devscript_linux.sh'")
             f2.close()
         except:
-            print(console.err('ERROR: Thank you for using DevScripts!'))
+            print(console.err('Thank you for using DevScripts!'))
 
     f.close()
 
